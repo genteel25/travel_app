@@ -12,3 +12,4 @@ export 'package:http/http.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:shimmer/shimmer.dart';
 export 'package:stacked_themes/stacked_themes.dart';
+export 'package:flutter_native_splash/flutter_native_splash.dart';

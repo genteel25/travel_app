@@ -1,10 +1,12 @@
 import 'package:travel_app/util/util.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await ScreenUtil.ensureScreenSize();
   await ThemeManager.initialise();
   runApp(const MyApp());
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -19,18 +21,14 @@ class MyApp extends StatelessWidget {
         defaultThemeMode: ThemeMode.system,
         darkTheme: AppTheme.darkTheme,
         lightTheme: AppTheme.lightTheme,
-        builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
+        builder: (context, regularTheme, darkTheme, themeMode) =>
+            MaterialApp.router(
           theme: regularTheme,
           darkTheme: darkTheme,
           themeMode: themeMode,
           debugShowCheckedModeBanner: false,
-          home: Scaffold(
-            body: Center(
-              child: Container(
-                child: const Text("Travel App"),
-              ),
-            ),
-          ),
+          routeInformationParser: router.routeInformationParser,
+          routerDelegate: router.routerDelegate,
         ),
       ),
     );

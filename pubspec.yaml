@@ -26,6 +26,7 @@ dependencies:
   shared_preferences: ^2.0.15
   flutter_screenutil: ^5.6.0
   google_fonts: ^3.0.1
+  flutter_native_splash: ^2.2.16
 
 dev_dependencies:
   flutter_test:
@@ -35,3 +36,29 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+
+  assets:
+    - assets/images/
+  
+  fonts:
+  - family: SF_UI_DISPLAY
+    fonts:
+      - asset: sf_ui_display.ttf
+      # - asset: Switzer-BlackItalic.otf
+      # - asset: Switzer-Bold.otf
+      # - asset: Switzer-BoldItalic.otf
+      # - asset: Switzer-Extrabold.otf
+      # - asset: Switzer-ExtraboldItalic.otf
+      # - asset: Switzer-Extralight.otf
+      # - asset: Switzer-ExtralightItalic.otf
+      # - asset: Switzer-Italic.otf
+      # - asset: Switzer-Light.otf
+      # - asset: Switzer-LightItalic.otf
+      # - asset: Switzer-Medium.otf
+      # - asset: Switzer-MediumItalic.otf
+      # - asset: Switzer-Regular.otf
+      # - asset: Switzer-Semibold.otf
+      # - asset: Switzer-SemiboldItalic.otf
+      # - asset: Switzer-Thin.otf
+      # - asset: Switzer-ThinItalic.otf
