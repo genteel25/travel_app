@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:travel_app/util/util.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
+  await ThemeManager.initialise();
   runApp(const MyApp());
 }
 
@@ -10,11 +13,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text("Travel App"),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) => ThemeBuilder(
+        defaultThemeMode: ThemeMode.system,
+        darkTheme: AppTheme.darkTheme,
+        lightTheme: AppTheme.lightTheme,
+        builder: (context, regularTheme, darkTheme, themeMode) => MaterialApp(
+          theme: regularTheme,
+          darkTheme: darkTheme,
+          themeMode: themeMode,
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: Center(
+              child: Container(
+                child: const Text("Travel App"),
+              ),
+            ),
+          ),
         ),
       ),
     );
