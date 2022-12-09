@@ -25,6 +25,7 @@ dependencies:
   stacked_themes: ^0.3.9
   shared_preferences: ^2.0.15
   flutter_screenutil: ^5.6.0
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
