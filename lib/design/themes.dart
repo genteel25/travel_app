@@ -19,5 +19,14 @@ class AppTheme {
       ));
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.white,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        fixedSize: Size(335.w, 56.h),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        textStyle: AppTextStyles.bold,
+      ),
+    ),
   );
 }

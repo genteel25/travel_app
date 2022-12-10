@@ -1,6 +1,4 @@
 import 'package:travel_app/util/util.dart';
-import 'package:travel_app/widget/button.dart';
-import 'package:travel_app/widget/typo.dart';
 
 part '../view/onboarding.dart';
 
@@ -20,6 +18,17 @@ class OnboardingController extends State<OnboardingScreen> {
     setState(() {
       pageIndex = value;
     });
+  }
+
+  scrollNavigator() {
+    if (pageIndex == 2) {
+      print("Last Screen");
+    } else {
+      controller.nextPage(
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeIn,
+      );
+    }
   }
 
   @override

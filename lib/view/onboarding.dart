@@ -11,7 +11,6 @@ class OnboardingView
       body: Column(
         children: [
           SizedBox(
-            // color: AppColors.grey,
             width: double.infinity,
             height: 648.h,
             child: PageView.builder(
@@ -20,16 +19,31 @@ class OnboardingView
               controller: controller.controller,
               itemBuilder: (context, index) {
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(onboarding[index]['image']),
-                    TypoWidget(
-                      data: onboarding[index]['content'],
-                      textStyle: AppTextStyles.onboard.copyWith(
-                        color: checkThemeMode(context) == ThemeMode.dark
-                            ? AppColors.white
-                            : AppColors.dark,
+                    Image.asset(onboarding[index]['image'], height: 444.h),
+                    SizedBox(height: 40.h),
+                    SizedBox(
+                      width: 330.w,
+                      height: 72.h,
+                      child: TypoWidget(
+                        data: onboarding[index]['content'],
+                        textStyle: AppTextStyles.onboard.copyWith(
+                          color: checkThemeMode(context) == ThemeMode.dark
+                              ? AppColors.white
+                              : AppColors.dark,
+                        ),
                       ),
-                    )
+                    ),
+                    SizedBox(height: 8.h),
+                    SizedBox(
+                      height: 72.h,
+                      width: 294,
+                      child: TypoWidget(
+                        data: onboarding[index]['description'],
+                        textStyle: AppTextStyles.medium,
+                      ),
+                    ),
                   ],
                 );
               },
@@ -39,7 +53,6 @@ class OnboardingView
           Container(
             width: double.infinity,
             height: 24.h,
-            // color: AppColors.grey,
             alignment: Alignment.center,
             child: ListView.builder(
               shrinkWrap: true,
@@ -58,7 +71,10 @@ class OnboardingView
             ),
           ),
           SizedBox(height: 38.h),
-          Button(text: controller.pageIndex == 0 ? "Get Started" : "Next")
+          Button(
+            text: controller.pageIndex == 0 ? "Get Started" : "Next",
+            onPressed: () => controller.scrollNavigator(),
+          )
         ],
       ),
     );
