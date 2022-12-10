@@ -75,4 +75,9 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     fontSize: 12.sp,
   );
+  static TextStyle onboard = TextStyle(
+    fontFamily: fontFamily,
+    fontWeight: FontWeight.w400,
+    fontSize: 30.sp,
+  );
 }

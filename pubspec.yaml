@@ -44,7 +44,7 @@ flutter:
   fonts:
   - family: SF_UI_DISPLAY
     fonts:
-      - asset: sf_ui_display.ttf
+      - asset: assets/fonts/sf_ui_display.ttf
       # - asset: Switzer-BlackItalic.otf
       # - asset: Switzer-Bold.otf
       # - asset: Switzer-BoldItalic.otf
