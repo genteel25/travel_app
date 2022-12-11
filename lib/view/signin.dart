@@ -17,7 +17,9 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
               width: 44.w,
               height: 44.h,
               decoration: BoxDecoration(
-                color: AppColors.lightGrey,
+                color: checkThemeMode(context) == ThemeMode.dark
+                    ? AppColors.lightGrey
+                    : AppColors.inputBackground,
                 borderRadius: BorderRadius.circular(44.r),
               ),
               child: Icon(
