@@ -76,9 +76,14 @@ class OtpView extends StatelessView<OtpScreen, OtpController> {
                 defaultPinTheme: PinTheme(
                   width: 70.w,
                   height: 56.h,
-                  textStyle: AppTextStyles.small,
+                  textStyle: AppTextStyles.small.copyWith(
+                      color: checkThemeMode(context) == ThemeMode.dark
+                          ? AppColors.white
+                          : AppColors.dark),
                   decoration: BoxDecoration(
-                      color: const Color(0xffF7F7F9),
+                      color: checkThemeMode(context) == ThemeMode.light
+                          ? const Color(0xffF7F7F9)
+                          : const Color(0xff20232d),
                       borderRadius: BorderRadius.circular(12.r)),
                 ),
                 separator: SizedBox(width: 18.w),

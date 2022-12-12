@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) => ThemeBuilder(
-        defaultThemeMode: ThemeMode.light,
+        defaultThemeMode: ThemeMode.dark,
         darkTheme: AppTheme.darkTheme,
         lightTheme: AppTheme.lightTheme,
         builder: (context, regularTheme, darkTheme, themeMode) =>
