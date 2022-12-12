@@ -5,10 +5,12 @@ enum AssetType { image, svg }
 class AssetHelper extends StatelessWidget {
   AssetType? type;
   final String path;
+  BoxFit? fit;
   double? width;
   AssetHelper({
     Key? key,
     this.type = AssetType.image,
+    this.fit = BoxFit.cover,
     this.width,
     required this.path,
   }) : super(key: key);
@@ -19,10 +21,12 @@ class AssetHelper extends StatelessWidget {
         ? Image.asset(
             path,
             width: width ?? 12.w,
+            fit: fit,
           )
         : SvgPicture.asset(
             path,
             width: width ?? 12.w,
+            fit: fit!,
           );
   }
 }

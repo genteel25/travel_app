@@ -1,8 +1,7 @@
-part of '../controller/signin.dart';
-// import 'package:travel_app/util/util.dart';
+part of '../controller/signup.dart';
 
-class SigninView extends StatelessView<SigninScreen, SigninController> {
-  const SigninView(SigninController state, {Key? key}) : super(state, key: key);
+class SignupView extends StatelessView<SignupScreen, SignupController> {
+  const SignupView(SignupController state, {Key? key}) : super(state, key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
               width: double.infinity,
               alignment: Alignment.center,
               child: TypoWidget(
-                data: "Sign in now",
+                data: "Sign up now",
                 textStyle: AppTextStyles.bolder.copyWith(
                   color: checkThemeMode(context) == ThemeMode.dark
                       ? AppColors.white
@@ -46,16 +45,18 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
                 ),
               ),
             ),
-            SizedBox(height: 8.h),
+            SizedBox(height: 12.h),
             Container(
               width: double.infinity,
               alignment: Alignment.center,
               child: TypoWidget(
-                data: "Please sign in to continue our app",
+                data: "Please fill the details and create account",
                 textStyle: AppTextStyles.medium,
               ),
             ),
             SizedBox(height: 40.h),
+            InputField(hintText: "Quadri Opeyemi"),
+            SizedBox(height: 24.h),
             InputField(hintText: "genteelajagbe@gmail.com"),
             SizedBox(height: 24.h),
             InputField(
@@ -66,20 +67,15 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
             ),
             SizedBox(height: 16.h),
             Container(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               width: double.infinity,
-              child: InkWell(
-                onTap: () => pushToNewScreen(context, "/forgotpassword"),
-                child: TypoWidget(
-                  data: "Forget Password?",
-                  textStyle: AppTextStyles.smaller.copyWith(
-                    color: AppColors.primary,
-                  ),
-                ),
+              child: TypoWidget(
+                data: "Password must be 8 character",
+                textStyle: AppTextStyles.medium,
               ),
             ),
             SizedBox(height: 40.h),
-            const Button(text: "Sign in"),
+            const Button(text: "Sign up"),
             SizedBox(height: 40.h),
             Container(
               alignment: Alignment.center,
@@ -92,7 +88,7 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
                   ),
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => pushToNewScreen(context, "/signup"),
+                      ..onTap = () => pushToNewScreen(context, "/home"),
                     text: " Sign up",
                     style: AppTextStyles.smaller.copyWith(
                       color: AppColors.primary,
@@ -107,7 +103,7 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
               child: TypoWidget(
                   data: "Or connect", textStyle: AppTextStyles.medium),
             ),
-            SizedBox(height: 100.h),
+            SizedBox(height: 36.h),
             _socialIconButtons(),
           ],
         ),

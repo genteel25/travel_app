@@ -3,16 +3,16 @@ import 'package:travel_app/util/util.dart';
 import 'package:travel_app/widget/asset.dart';
 import 'package:travel_app/widget/textfield.dart';
 
-part '../view/signin.dart';
+part '../view/signup.dart';
 
-class SigninScreen extends StatefulWidget {
-  const SigninScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  State<SigninScreen> createState() => SigninController();
+  State<SignupScreen> createState() => SignupController();
 }
 
-class SigninController extends State<SigninScreen> {
+class SignupController extends State<SignupScreen> {
   bool showPassword = false;
 
   changePasswordIcon() {
@@ -23,6 +23,6 @@ class SigninController extends State<SigninScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SigninView(this);
+    return SignupView(this);
   }
 }

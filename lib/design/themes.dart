@@ -2,9 +2,8 @@ import 'package:travel_app/util/util.dart';
 
 class AppTheme {
   static ThemeData darkTheme = ThemeData(
-      scaffoldBackgroundColor: AppColors.dark,
+      scaffoldBackgroundColor: AppColors.scaffold,
       colorScheme: ColorScheme.fromSwatch().copyWith(
-        // background: AppColors.primary,
         primary: AppColors.primary,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -21,6 +20,7 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.lightGrey,
+        hintStyle: AppTextStyles.medium.copyWith(color: Colors.grey[600]),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.r),
           borderSide: BorderSide.none,
@@ -32,7 +32,7 @@ class AppTheme {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14.r),
           borderSide: BorderSide(
-            width: 3.w,
+            width: 2.w,
             color: AppColors.grey.withOpacity(0.25),
           ),
         ),
@@ -54,6 +54,7 @@ class AppTheme {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.inputBackground,
+      hintStyle: AppTextStyles.medium.copyWith(color: Colors.grey[600]),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14.r),
         borderSide: BorderSide.none,
