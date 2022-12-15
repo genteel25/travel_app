@@ -1,3 +1,4 @@
+import 'package:travel_app/logic/socket_methods.dart';
 import 'package:travel_app/util/util.dart';
 
 void main() async {
@@ -5,6 +6,8 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await ScreenUtil.ensureScreenSize();
   await ThemeManager.initialise();
+
+  SocketMethods().createRoom();
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }

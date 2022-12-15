@@ -31,6 +31,17 @@ class OnboardingController extends State<OnboardingScreen> {
     }
   }
 
+  // IO.Socket socket = IO.io(
+  //     'http://localhost:3000',
+  //     OptionBuilder().setTransports(['websocket']) // for Flutter or Dart VM
+  //         .setExtraHeaders({'foo': 'bar'}) // optional
+  //         .build());
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return OnboardingView(this);
