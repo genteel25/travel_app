@@ -22,7 +22,7 @@ class OnboardingController extends State<OnboardingScreen> {
 
   scrollNavigator() {
     if (pageIndex == 2) {
-      GoRouter.of(context).pushNamed("signin");
+      GoRouter.of(context).push("/signin");
     } else {
       controller.nextPage(
         duration: const Duration(milliseconds: 500),

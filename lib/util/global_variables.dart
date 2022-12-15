@@ -1,3 +1,7 @@
+import './util.dart';
+
+Repository repository = ProvideRepository().provideRepository();
+
 List<Map<String, dynamic>> onboarding = [
   {
     "image": "assets/images/onb1.png",

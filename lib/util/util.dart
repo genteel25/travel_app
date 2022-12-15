@@ -1,7 +1,3 @@
-export 'function.dart';
-export 'global_variables.dart';
-export 'logger.dart';
-export 'package_export.dart';
 export '/architecture/architecture.dart';
 export '/config/config.dart';
 export '/controller/controller.dart';
@@ -12,3 +8,7 @@ export '/repository/repo.dart';
 export '/service/service.dart';
 export '/view/view.dart';
 export '/widget/widget.dart';
+export 'function.dart';
+export 'global_variables.dart';
+export 'logger.dart';
+export 'package_export.dart';

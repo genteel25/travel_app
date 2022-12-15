@@ -5,13 +5,13 @@ ThemeMode checkThemeMode(BuildContext context) {
 }
 
 goToNewScreen(BuildContext context, String routeName) {
-  return context.go(routeName);
+  GoRouter.of(context).go(routeName);
 }
 
 pushToNewScreen(BuildContext context, String routeName) {
-  return GoRouter.of(context).push(routeName);
+  GoRouter.of(context).push(routeName);
 }
 
 popScreen(BuildContext context) {
-  return GoRouter.of(context).pop();
+  GoRouter.of(context).pop();
 }

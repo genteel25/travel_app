@@ -81,10 +81,11 @@ class OtpView extends StatelessView<OtpScreen, OtpController> {
                           ? AppColors.white
                           : AppColors.dark),
                   decoration: BoxDecoration(
-                      color: checkThemeMode(context) == ThemeMode.light
-                          ? const Color(0xffF7F7F9)
-                          : const Color(0xff20232d),
-                      borderRadius: BorderRadius.circular(12.r)),
+                    color: checkThemeMode(context) == ThemeMode.light
+                        ? const Color(0xffF7F7F9)
+                        : const Color(0xff20232d),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
                 ),
                 separator: SizedBox(width: 18.w),
                 keyboardType: TextInputType.text,
