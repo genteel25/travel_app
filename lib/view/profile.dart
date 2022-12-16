@@ -6,6 +6,12 @@ class ProfileView extends StatelessView<ProfileScreen, ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+          child: Text(
+        "Profile Page",
+        style: AppTextStyles.bolds.copyWith(color: AppColors.white),
+      )),
+    );
   }
 }

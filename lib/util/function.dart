@@ -15,3 +15,7 @@ pushToNewScreen(BuildContext context, String routeName) {
 popScreen(BuildContext context) {
   GoRouter.of(context).pop();
 }
+
+bool checkCurrentThemeMode(BuildContext context) {
+  return getThemeManager(context).isDarkMode;
+}

@@ -6,6 +6,12 @@ class CalendarView extends StatelessView<CalendarScreen, CalendarController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+          child: Text(
+        "Calendar Page",
+        style: AppTextStyles.bolds.copyWith(color: AppColors.white),
+      )),
+    );
   }
 }

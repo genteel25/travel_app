@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:travel_app/controller/forgot_password.dart';
-import 'package:travel_app/controller/home.dart';
 import 'package:travel_app/controller/otp.dart';
 import 'package:travel_app/util/util.dart';
 
@@ -32,8 +29,19 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/home",
       builder: (context, state) {
-        log(state.fullpath!);
-        return const HomeScreen();
+        return const BottomBarScreen();
+      },
+    ),
+    GoRoute(
+      path: "/chat",
+      builder: (context, state) {
+        return ChatScreen();
+      },
+    ),
+    GoRoute(
+      path: "/profile",
+      builder: (context, state) {
+        return const ProfileScreen();
       },
     ),
   ],
