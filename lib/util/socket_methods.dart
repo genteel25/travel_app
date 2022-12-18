@@ -1,3 +1,4 @@
+import 'package:travel_app/util/socket_io.dart';
 import 'package:travel_app/util/util.dart';
 
 List<dynamic>? datas;

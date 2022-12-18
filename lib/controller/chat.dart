@@ -1,4 +1,4 @@
-import 'package:travel_app/logic/socket_methods.dart';
+import 'package:travel_app/util/socket_methods.dart';
 import 'package:travel_app/util/util.dart';
 
 part '../view/chat.dart';

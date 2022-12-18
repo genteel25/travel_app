@@ -6,9 +6,6 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await ScreenUtil.ensureScreenSize();
   await ThemeManager.initialise();
-
-  SocketMethods().createRoom();
-  SocketMethods().sendMessage();
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }
