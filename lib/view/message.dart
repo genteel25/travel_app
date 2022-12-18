@@ -57,7 +57,7 @@ class MessageView extends StatelessView<MessageScreen, MessageController> {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
-              itemCount: 8,
+              itemCount: datas!.length,
               shrinkWrap: true,
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () => context.push("/chat"),
@@ -87,7 +87,7 @@ class MessageView extends StatelessView<MessageScreen, MessageController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TypoWidget(
-                            data: "Ajagbe Quadri",
+                            data: datas![index]['name'],
                             textStyle: AppTextStyles.semiBold
                                 .copyWith(color: Colors.grey[200]),
                           ),
@@ -96,8 +96,7 @@ class MessageView extends StatelessView<MessageScreen, MessageController> {
                             alignment: Alignment.centerLeft,
                             width: 190.w,
                             child: TypoWidget(
-                              data:
-                                  "I am a Travel loving person, shey you know",
+                              data: datas![index]['phone'],
                               textStyle: AppTextStyles.medium.copyWith(
                                   color: Colors.grey[600], fontSize: 14.sp),
                               wrap: false,

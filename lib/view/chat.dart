@@ -28,7 +28,7 @@ class ChatView extends StatelessView<ChatScreen, ChatController> {
                 borderRadius: BorderRadius.circular(30.r),
               ),
             ),
-          )
+          ),
         ],
       ),
       body: Padding(
@@ -36,7 +36,16 @@ class ChatView extends StatelessView<ChatScreen, ChatController> {
           horizontal: 20.h,
         ),
         child: Column(
-          children: [],
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: datas!.length == 0 ? 5 : datas!.length,
+              itemBuilder: (context, index) => TypoWidget(
+                data: datas!.length == 0 ? "new chat" : datas![index]['email'],
+                textStyle: AppTextStyles.bolds,
+              ),
+            ),
+          ],
         ),
       ),
     );

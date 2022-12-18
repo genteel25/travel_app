@@ -8,6 +8,7 @@ void main() async {
   await ThemeManager.initialise();
 
   SocketMethods().createRoom();
+  SocketMethods().sendMessage();
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }

@@ -1,5 +1,7 @@
 import 'package:travel_app/util/util.dart';
 
+List<dynamic>? datas;
+
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
 
@@ -10,8 +12,11 @@ class SocketMethods {
   }
 
   void sendMessage() {
-    _socketClient.emit("send_message", {
-      "message": "Some messages",
+    _socketClient.on("send_message", (data) {
+      if (data["action"] == "create") {
+        datas = data['data'];
+        print(datas);
+      }
     });
   }
 }
