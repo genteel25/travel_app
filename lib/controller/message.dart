@@ -1,4 +1,3 @@
-import 'package:travel_app/util/socket_methods.dart';
 import 'package:travel_app/util/util.dart';
 
 part '../view/message.dart';
@@ -11,6 +10,12 @@ class MessageScreen extends StatefulWidget {
 }
 
 class MessageController extends State<MessageScreen> {
+  @override
+  void initState() {
+    context.read<UserBloc>().add(GetAllUsers());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MessageView(this);

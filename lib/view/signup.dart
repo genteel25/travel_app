@@ -89,7 +89,7 @@ class SignupView extends StatelessView<SignupScreen, SignupController> {
                   TextSpan(
                     recognizer: TapGestureRecognizer()
                       ..onTap = () => pushToNewScreen(context, "/home"),
-                    text: " Sign up",
+                    text: " Sign in",
                     style: AppTextStyles.smaller.copyWith(
                       color: AppColors.primary,
                     ),

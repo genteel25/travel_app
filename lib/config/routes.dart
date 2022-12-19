@@ -1,5 +1,6 @@
 import 'package:travel_app/controller/forgot_password.dart';
 import 'package:travel_app/controller/otp.dart';
+import 'package:travel_app/model/user_response.dart';
 import 'package:travel_app/util/util.dart';
 
 final GoRouter router = GoRouter(
@@ -35,7 +36,9 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: "/chat",
       builder: (context, state) {
-        return ChatScreen();
+        return ChatScreen(
+          user: state.extra! as Map<String, dynamic>,
+        );
       },
     ),
     GoRoute(

@@ -6,15 +6,15 @@ import 'package:travel_app/model/user_response.dart';
 class ApiServices {
   Future<List<UserResponse>> getAllUsers() async {
     try {
-      List<UserResponse> users = [];
+      List<UserResponse> messages = [];
       var response =
           await doGetRequest("http://localhost:3000/api/v1/user/allusers");
       if (isConnectionSuccessful(response.statusCode)) {
         var decodedJsons = jsonDecode(response.body) as List;
-        users = decodedJsons.map((e) => UserResponse.fromJson(e)).toList();
-        return users;
+        messages = decodedJsons.map((e) => UserResponse.fromJson(e)).toList();
+        return messages;
       }
-      return users;
+      return messages;
     } catch (e) {
       List<UserResponse> users = [];
       return users;

@@ -1,4 +1,3 @@
-import 'package:travel_app/logic/socket_methods.dart';
 import 'package:travel_app/util/util.dart';
 
 void main() async {
@@ -19,19 +18,23 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) => ThemeBuilder(
-        defaultThemeMode: ThemeMode.dark,
-        darkTheme: AppTheme.darkTheme,
-        lightTheme: AppTheme.lightTheme,
-        builder: (context, regularTheme, darkTheme, themeMode) =>
-            MaterialApp.router(
-          theme: regularTheme,
-          darkTheme: darkTheme,
-          themeMode: themeMode,
-          debugShowCheckedModeBanner: false,
-          routeInformationParser: router.routeInformationParser,
-          routerDelegate: router.routerDelegate,
-        ),
-      ),
+          defaultThemeMode: ThemeMode.dark,
+          darkTheme: AppTheme.darkTheme,
+          lightTheme: AppTheme.lightTheme,
+          builder: (context, regularTheme, darkTheme, themeMode) =>
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider<UserBloc>(create: (context) => UserBloc()),
+                ],
+                child: MaterialApp.router(
+                  theme: regularTheme,
+                  darkTheme: darkTheme,
+                  themeMode: themeMode,
+                  debugShowCheckedModeBanner: false,
+                  routeInformationParser: router.routeInformationParser,
+                  routerDelegate: router.routerDelegate,
+                ),
+              )),
     );
   }
 }

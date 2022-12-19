@@ -13,7 +13,7 @@ class ChatView extends StatelessView<ChatScreen, ChatController> {
         title: GestureDetector(
           onTap: () => context.push("/profile"),
           child: TypoWidget(
-            data: "Ajagbe Quadri",
+            data: widget.user['user'].name,
             textStyle: AppTextStyles.bolds,
           ),
         ),
@@ -39,15 +39,66 @@ class ChatView extends StatelessView<ChatScreen, ChatController> {
           children: [
             ListView.builder(
               shrinkWrap: true,
-              itemCount: datas!.length == 0 ? 5 : datas!.length,
-              itemBuilder: (context, index) => TypoWidget(
-                data: datas!.length == 0 ? "new chat" : datas![index]['email'],
-                textStyle: AppTextStyles.bolds,
-              ),
+              itemCount: widget.user['messages'].length,
+              itemBuilder: (context, index) {
+                widget.user['messages'][index]['senderId'];
+                return widget.user['messages'][index]['senderId'] ==
+                        "639d464b0a66cc9167e97967"
+                    ? _senderBox(
+                        context,
+                        widget.user['messages'][index]['message'],
+                      )
+                    : _receiverBox(
+                        context,
+                        widget.user['messages'][index]['message'],
+                      );
+              },
             ),
           ],
         ),
       ),
     );
   }
+}
+
+Widget _receiverBox(BuildContext context, String message) {
+  return Container(
+    width: double.infinity,
+    margin: REdgeInsets.symmetric(vertical: 8.r),
+    height: 80.h,
+    // color: Colors.red,
+    alignment: Alignment.centerLeft,
+    child: Container(
+      width: 120.w,
+      height: 70.h,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: Colors.green, borderRadius: BorderRadius.circular(4.r)),
+      child: TypoWidget(
+        data: message,
+        textStyle: AppTextStyles.medium.copyWith(color: Colors.white),
+      ),
+    ),
+  );
+}
+
+Widget _senderBox(BuildContext context, String message) {
+  return Container(
+    width: double.infinity,
+    margin: REdgeInsets.symmetric(vertical: 8.r),
+    height: 80.h,
+    // color: Colors.red,
+    alignment: Alignment.centerRight,
+    child: Container(
+      width: 120.w,
+      height: 70.h,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: Colors.green, borderRadius: BorderRadius.circular(4.r)),
+      child: TypoWidget(
+        data: message,
+        textStyle: AppTextStyles.medium.copyWith(color: Colors.white),
+      ),
+    ),
+  );
 }
