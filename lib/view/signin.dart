@@ -56,13 +56,17 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
               ),
             ),
             SizedBox(height: 40.h),
-            InputField(hintText: "genteelajagbe@gmail.com"),
+            InputField(
+              hintText: "genteelajagbe@gmail.com",
+              controller: controller.emailController,
+            ),
             SizedBox(height: 24.h),
             InputField(
               hintText: "************",
               type: InputType.password,
               onPressed: () => controller.changePasswordIcon(),
               show: controller.showPassword,
+              controller: controller.passwordController,
             ),
             SizedBox(height: 16.h),
             Container(
@@ -79,7 +83,30 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
               ),
             ),
             SizedBox(height: 40.h),
-            const Button(text: "Sign in"),
+            BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthSuccess) {
+                  GoRouter.of(context).go("/home");
+                }
+                if (state is AuthFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        state.error.toString(),
+                      ),
+                    ),
+                  );
+                }
+              },
+              child: Button(
+                text: "Sign in",
+                onPressed: () => context.read<AuthBloc>().add(
+                      SignIn(
+                          email: controller.emailController.text,
+                          password: controller.passwordController.text),
+                    ),
+              ),
+            ),
             SizedBox(height: 40.h),
             Container(
               alignment: Alignment.center,

@@ -14,11 +14,18 @@ class SigninScreen extends StatefulWidget {
 
 class SigninController extends State<SigninScreen> {
   bool showPassword = false;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   changePasswordIcon() {
     setState(() {
       showPassword = !showPassword;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

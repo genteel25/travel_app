@@ -1,3 +1,4 @@
+import 'package:travel_app/service/session_manager.dart';
 import 'package:travel_app/util/util.dart';
 
 part '../view/onboarding.dart';
@@ -20,9 +21,10 @@ class OnboardingController extends State<OnboardingScreen> {
     });
   }
 
-  scrollNavigator() {
+  scrollNavigator() async {
     if (pageIndex == 2) {
       GoRouter.of(context).push("/signin");
+      await SessionManager().newUser();
     } else {
       controller.nextPage(
         duration: const Duration(milliseconds: 500),

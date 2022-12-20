@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:travel_app/model/auth_model.dart';
 import 'package:travel_app/model/user_response.dart';
 
 class ApiServices {
@@ -18,6 +19,45 @@ class ApiServices {
     } catch (e) {
       List<UserResponse> users = [];
       return users;
+    }
+  }
+
+  Future<AuthResponse> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      Map<String, String> payload = {
+        "email": email,
+        "password": password,
+      };
+      print(email);
+      print(password);
+      var response = await doPostRequest(
+          "http://localhost:1000/api/v1/user/signin", payload);
+      print(response.body);
+      if (isConnectionSuccessful(response.statusCode)) {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = true;
+        return requestResponse;
+      } else if (response.statusCode == 401) {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = false;
+        return requestResponse;
+      } else {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = false;
+        return requestResponse;
+      }
+      // return AuthResponse();
+    } on Exception {
+      return AuthResponse(
+        status: false,
+        message: "You are not connected to the internet",
+      );
     }
   }
 

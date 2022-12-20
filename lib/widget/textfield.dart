@@ -7,17 +7,20 @@ class InputField extends StatelessWidget {
   InputType? type;
   VoidCallback? onPressed;
   bool? show;
+  TextEditingController? controller;
   InputField({
     Key? key,
     required this.hintText,
     this.onPressed,
     this.show,
+    this.controller,
     this.type = InputType.normal,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       // obscuringCharacter: "*",
       obscureText: type == InputType.password && show != true
           ? true

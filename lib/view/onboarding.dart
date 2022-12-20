@@ -74,7 +74,7 @@ class OnboardingView
           Button(
             text: controller.pageIndex == 0 ? "Get Started" : "Next",
             onPressed: () => controller.scrollNavigator(),
-          )
+          ),
         ],
       ),
     );
