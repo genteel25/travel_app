@@ -88,24 +88,49 @@ class SignupView extends StatelessView<SignupScreen, SignupController> {
             ),
             SizedBox(height: 30.h),
             BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthLoading) {
+              listener: (context, state) async {
+                // if (state is AuthLoading) {
+                //   showDialog(
+                //     barrierColor: AppColors.scaffold.withOpacity(0.3),
+                //     barrierLabel: "Barrier",
+                //     context: context,
+                //     builder: (context) {
+                //       return const Dialog();
+                //     },
+                //   );
+                // }
+                if (state is AuthSuccess) {
                   showDialog(
                     barrierColor: AppColors.scaffold.withOpacity(0.3),
                     barrierLabel: "Barrier",
                     context: context,
                     builder: (context) {
-                      return const Dialog();
+                      return Dialog(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 50.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Text(
+                            state.response.message,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      );
                     },
                   );
-                }
-                if (state is AuthSuccess) {
-                  context.pop();
-                  // GoRouter.of(context).goNamed("otp");
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const OtpScreen()));
+                  await Future.delayed(const Duration(seconds: 6), () async {
+                    context.pop();
+                    pushToNewScreen(context, "/otp");
+                    await SessionManager().setUserId(state.response.id!);
+                    await SessionManager().setUserEmail(state.response.email!);
+                  });
                 }
                 if (state is AuthFailure) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -129,6 +154,16 @@ class SignupView extends StatelessView<SignupScreen, SignupController> {
                     ),
               ),
             ),
+            // Button(text: "Sign up", onPressed: () => context.push("/otp")
+            // context.read<AuthBloc>().add(
+            //       SignUp(
+            //         email: controller.emailController.text,
+            //         password: controller.passwordController.text,
+            //         phone: controller.phoneController.text,
+            //         name: controller.nameController.text,
+            //       ),
+            //     ),
+            // ),
             SizedBox(height: 30.h),
             Container(
               alignment: Alignment.center,
@@ -141,7 +176,7 @@ class SignupView extends StatelessView<SignupScreen, SignupController> {
                   ),
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => pushToNewScreen(context, "/home"),
+                      ..onTap = () => pushToNewScreen(context, "/signin"),
                     text: " Sign in",
                     style: AppTextStyles.smaller.copyWith(
                       color: AppColors.primary,

@@ -20,4 +20,12 @@ class Repository {
     return await _apiServices.signUp(
         email: email, password: password, phone: phone, name: name);
   }
+
+  Future<AuthResponse> verifyUser(String code) async {
+    return await _apiServices.verifyUser(code: code);
+  }
+
+  Future<AuthResponse> resendOtp() async {
+    return await _apiServices.resendOtps();
+  }
 }

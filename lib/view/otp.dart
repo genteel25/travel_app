@@ -72,7 +72,7 @@ class OtpView extends StatelessView<OtpScreen, OtpController> {
             SizedBox(
               width: double.infinity,
               child: Pinput(
-                onCompleted: (value) => goToNewScreen(context, "/home"),
+                onCompleted: (value) => controller.setCode(value),
                 defaultPinTheme: PinTheme(
                   width: 70.w,
                   height: 56.h,
@@ -92,10 +92,85 @@ class OtpView extends StatelessView<OtpScreen, OtpController> {
               ),
             ),
             SizedBox(height: 40.h),
-            Button(
-              text: "Verify",
-              onPressed: () => pushToNewScreen(context, "/home"),
+            BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthSuccess) {
+                  goToNewScreen(context, "signin");
+                }
+              },
+              child: Button(
+                text: "Verify",
+                onPressed: () => context.read<AuthBloc>().add(
+                      VerifyUser(code: controller.code),
+                    ),
+              ),
             ),
+            SizedBox(height: 24.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                controller._start > 0
+                    ? TypoWidget(
+                        data:
+                            "${controller._start.toString()} seconds left(5mins)",
+                        textStyle: AppTextStyles.medium
+                            .copyWith(fontStyle: FontStyle.italic),
+                      )
+                    : const Text(""),
+                if (controller._start == 0)
+                  BlocListener<AuthBloc, AuthState>(
+                    listener: (context, state) {
+                      if (state is AuthSuccess) {
+                        showDialog(
+                          barrierColor: AppColors.scaffold.withOpacity(0.3),
+                          barrierLabel: "Barrier",
+                          context: context,
+                          builder: (context) {
+                            return Dialog(
+                              alignment: Alignment.topCenter,
+                              child: Container(
+                                alignment: Alignment.center,
+                                height: 50.h,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Text(
+                                  state.response.message,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      }
+                      if (state is AuthFailure) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              state.error.toString(),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: GestureDetector(
+                      onTap: () => context.read<AuthBloc>().add(ResendOtp()),
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          "Resend code",
+                          style: AppTextStyles.medium
+                              .copyWith(color: AppColors.primary),
+                        ),
+                      ),
+                    ),
+                  )
+              ],
+            )
           ],
         ),
       ),

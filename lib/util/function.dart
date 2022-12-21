@@ -5,7 +5,7 @@ ThemeMode checkThemeMode(BuildContext context) {
 }
 
 goToNewScreen(BuildContext context, String routeName) {
-  GoRouter.of(context).go(routeName);
+  GoRouter.of(context).goNamed(routeName);
 }
 
 pushToNewScreen(BuildContext context, String routeName) {

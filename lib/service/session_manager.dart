@@ -41,4 +41,28 @@ class SessionManager {
   Future<bool> clearToken() async {
     return await getPrefs().then((prefs) => prefs.remove("token"));
   }
+
+  Future<bool> setUserId(String token) async {
+    return await getPrefs().then(
+      (prefs) => prefs.setString("id", token),
+    );
+  }
+
+  Future<String?> getUserId() async {
+    return await getPrefs().then(
+      (prefs) => prefs.getString("id"),
+    );
+  }
+
+  Future<bool> setUserEmail(String token) async {
+    return await getPrefs().then(
+      (prefs) => prefs.setString("email", token),
+    );
+  }
+
+  Future<String?> getUserEmail() async {
+    return await getPrefs().then(
+      (prefs) => prefs.getString("email"),
+    );
+  }
 }

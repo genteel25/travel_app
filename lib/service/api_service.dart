@@ -99,6 +99,76 @@ class ApiServices {
     }
   }
 
+  Future<AuthResponse> verifyUser({
+    required String code,
+  }) async {
+    try {
+      Map<String, String> payload = {
+        "token": code,
+      };
+      var response = await doPostRequest(
+          "http://localhost:3000/api/v1/user/verify", payload);
+      if (isConnectionSuccessful(response.statusCode)) {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = true;
+        return requestResponse;
+      } else if (response.statusCode == 401) {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = false;
+        return requestResponse;
+      } else {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = false;
+        return requestResponse;
+      }
+    } on Exception {
+      return AuthResponse(
+        status: false,
+        message: "You are not connected to the internet",
+      );
+    }
+  }
+
+  Future<AuthResponse> resendOtps() async {
+    try {
+      String? userId = await SessionManager().getUserId();
+      String? userEmail = await SessionManager().getUserEmail();
+      Map<String, String> payload = {
+        "id": userId!,
+        "email": userEmail!,
+      };
+      print(userId);
+      print(userEmail);
+      var response = await doPostRequest(
+          "http://localhost:3000/api/v1/user/resendotp", payload);
+      print(response.body);
+      if (isConnectionSuccessful(response.statusCode)) {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = true;
+        return requestResponse;
+      } else if (response.statusCode == 401) {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = false;
+        return requestResponse;
+      } else {
+        var decodedBody = jsonDecode(response.body);
+        var requestResponse = AuthResponse.fromJson(decodedBody);
+        requestResponse.status = false;
+        return requestResponse;
+      }
+    } on Exception {
+      return AuthResponse(
+        status: false,
+        message: "You are not connected to the internet",
+      );
+    }
+  }
+
   bool isConnectionSuccessful(int statusCode) {
     return statusCode == 200 || statusCode == 201;
   }

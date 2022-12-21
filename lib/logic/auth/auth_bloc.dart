@@ -6,6 +6,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<SignIn>((event, emit) => signIn(event, emit));
     on<SignUp>((event, emit) => signUp(event, emit));
+    on<VerifyUser>((event, emit) => verifyUser(event, emit));
+    on<ResendOtp>((event, emit) => resendOtpss(event, emit));
   }
 
   signIn(event, emit) async {
@@ -38,5 +40,33 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (e) {
       emit(AuthFailure(error: e.toString()));
     }
+  }
+}
+
+verifyUser(event, emit) async {
+  try {
+    emit(AuthLoading());
+    final AuthResponse auth = await repository.verifyUser(event.code);
+    if (auth.status == true) {
+      emit(AuthSuccess(response: auth));
+    } else {
+      emit(AuthFailure(error: auth.message.toString()));
+    }
+  } catch (e) {
+    emit(AuthFailure(error: e.toString()));
+  }
+}
+
+resendOtpss(event, emit) async {
+  try {
+    emit(AuthLoading());
+    final AuthResponse auth = await repository.resendOtp();
+    if (auth.status == true) {
+      emit(AuthSuccess(response: auth));
+    } else {
+      emit(AuthFailure(error: auth.message.toString()));
+    }
+  } catch (e) {
+    emit(AuthFailure(error: e.toString()));
   }
 }

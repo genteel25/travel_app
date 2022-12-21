@@ -23,3 +23,15 @@ class SignIn extends AuthEvent {
     required this.password,
   });
 }
+
+class VerifyUser extends AuthEvent {
+  final String code;
+
+  VerifyUser({
+    required this.code,
+  });
+}
+
+class ResendOtp extends AuthEvent {
+  ResendOtp();
+}

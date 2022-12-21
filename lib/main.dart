@@ -8,7 +8,6 @@ void main() async {
   await ThemeManager.initialise();
   newUser = await SessionManager().getNewUser();
   isLoggedIn = await SessionManager().getSession();
-  print(isLoggedIn);
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }
@@ -36,8 +35,7 @@ class MyApp extends StatelessWidget {
                   darkTheme: darkTheme,
                   themeMode: themeMode,
                   debugShowCheckedModeBanner: false,
-                  routeInformationParser: router.routeInformationParser,
-                  routerDelegate: router.routerDelegate,
+                  routerConfig: router,
                 ),
               )),
     );

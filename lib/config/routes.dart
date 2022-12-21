@@ -18,14 +18,18 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const OnboardingScreen(),
     ),
     GoRoute(
-      name: "signin",
-      path: "/signin",
-      builder: (context, state) => const SigninScreen(),
-    ),
-    GoRoute(
       name: "signup",
       path: "/signup",
-      builder: (context, state) => const SignupScreen(),
+      builder: (context, state) {
+        return const SignupScreen();
+      },
+    ),
+    GoRoute(
+      name: "signin",
+      path: "/signin",
+      builder: (context, state) {
+        return const SigninScreen();
+      },
     ),
     GoRoute(
       name: "forgotpassword",

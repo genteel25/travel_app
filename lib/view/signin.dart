@@ -63,10 +63,9 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
             ),
             SizedBox(height: 40.h),
             BlocListener<AuthBloc, AuthState>(
-              listener: (context, state)  {
+              listener: (context, state) {
                 if (state is AuthSuccess) {
-                  
-                  GoRouter.of(context).pushNamed("main");
+                  GoRouter.of(context).goNamed("main");
                 }
                 if (state is AuthFailure) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -94,12 +93,12 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
               child: RichText(
                 text: TextSpan(children: [
                   TextSpan(
-                    text: "Do you have an account?",
+                    text: "Don't have an account?",
                     style: AppTextStyles.medium,
                   ),
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = () => pushToNewScreen(context, "/signup"),
+                      ..onTap = () => context.goNamed("signup"),
                     text: " Sign up",
                     style: AppTextStyles.smaller.copyWith(
                       color: AppColors.primary,
