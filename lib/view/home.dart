@@ -42,11 +42,16 @@ class HomeView extends StatelessView<HomeScreen, HomeController> {
                     ],
                   ),
                 ),
-                SvgPicture.asset(
-                  "assets/svg/notification.svg",
-                  color: checkThemeMode(context) == ThemeMode.dark
-                      ? AppColors.white
-                      : AppColors.dark,
+                GestureDetector(
+                  onTap: () => SessionManager()
+                      .clearSession()
+                      .then((value) => context.push("/signin")),
+                  child: SvgPicture.asset(
+                    "assets/svg/notification.svg",
+                    color: checkThemeMode(context) == ThemeMode.dark
+                        ? AppColors.white
+                        : AppColors.dark,
+                  ),
                 )
               ],
             ),

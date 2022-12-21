@@ -8,9 +8,9 @@ class SignUp extends AuthEvent {
 
   SignUp({
     required this.email,
-    required this.name,
     required this.password,
     required this.phone,
+    required this.name,
   });
 }
 

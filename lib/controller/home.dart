@@ -1,3 +1,4 @@
+import 'package:travel_app/service/session_manager.dart';
 import 'package:travel_app/util/util.dart';
 
 part '../view/home.dart';

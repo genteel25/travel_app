@@ -12,28 +12,7 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 56.h),
-            InkWell(
-              onTap: () => popScreen(context),
-              child: Container(
-                width: 44.w,
-                height: 44.h,
-                decoration: BoxDecoration(
-                  color: checkThemeMode(context) == ThemeMode.dark
-                      ? AppColors.lightGrey
-                      : AppColors.inputBackground,
-                  borderRadius: BorderRadius.circular(44.r),
-                ),
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  size: 11.w.h,
-                  color: checkThemeMode(context) == ThemeMode.dark
-                      ? AppColors.white
-                      : AppColors.dark,
-                ),
-              ),
-            ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 140.h),
             Container(
               width: double.infinity,
               alignment: Alignment.center,
@@ -84,9 +63,10 @@ class SigninView extends StatelessView<SigninScreen, SigninController> {
             ),
             SizedBox(height: 40.h),
             BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
+              listener: (context, state)  {
                 if (state is AuthSuccess) {
-                  GoRouter.of(context).go("/home");
+                  
+                  GoRouter.of(context).pushNamed("main");
                 }
                 if (state is AuthFailure) {
                   ScaffoldMessenger.of(context).showSnackBar(

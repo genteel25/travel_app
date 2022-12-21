@@ -1,6 +1,5 @@
 import 'package:travel_app/controller/forgot_password.dart';
 import 'package:travel_app/controller/otp.dart';
-import 'package:travel_app/service/session_manager.dart';
 import 'package:travel_app/util/util.dart';
 
 final GoRouter router = GoRouter(
@@ -8,6 +7,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       name: "home",
       path: "/",
+      redirect: (_, state) {
+        if (isLoggedIn == true) {
+          return "/home";
+        } else if (newUser == false) {
+          return "/signin";
+        }
+        return null;
+      },
       builder: (context, state) => const OnboardingScreen(),
     ),
     GoRoute(
@@ -21,18 +28,22 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const SignupScreen(),
     ),
     GoRoute(
+      name: "forgotpassword",
       path: "/forgotpassword",
       builder: (context, state) => const ForgotPasswordScreen(),
     ),
     GoRoute(
+      name: "otp",
       path: "/otp",
       builder: (context, state) => const OtpScreen(),
     ),
     GoRoute(
+      name: "main",
       path: "/home",
       builder: (context, state) => const BottomBarScreen(),
     ),
     GoRoute(
+      name: "chat",
       path: "/chat",
       builder: (context, state) {
         return ChatScreen(
@@ -41,21 +52,12 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+      name: "profile",
       path: "/profile",
       builder: (context, state) {
         return const ProfileScreen();
       },
     ),
   ],
-  redirect: (_, state) {
-    bool newUser = false;
-    SessionManager().getNewUser().then((user) => {
-          newUser = user,
-        });
-    if (!newUser) {
-      return "/signin";
-    }
-    return null;
-  },
-  // debugLogDiagnostics: true,
+  debugLogDiagnostics: true,
 );

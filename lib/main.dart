@@ -1,3 +1,4 @@
+import 'package:travel_app/service/session_manager.dart';
 import 'package:travel_app/util/util.dart';
 
 void main() async {
@@ -5,6 +6,9 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await ScreenUtil.ensureScreenSize();
   await ThemeManager.initialise();
+  newUser = await SessionManager().getNewUser();
+  isLoggedIn = await SessionManager().getSession();
+  print(isLoggedIn);
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }

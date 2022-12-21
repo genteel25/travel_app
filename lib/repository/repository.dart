@@ -14,4 +14,10 @@ class Repository {
   Future<AuthResponse> signIn(String email, String password) async {
     return await _apiServices.signIn(email: email, password: password);
   }
+
+  Future<AuthResponse> signUp(
+      String email, String password, String phone, String name) async {
+    return await _apiServices.signUp(
+        email: email, password: password, phone: phone, name: name);
+  }
 }

@@ -22,3 +22,6 @@ List<Map<String, dynamic>> onboarding = [
         "To get the best of your adventure you just need to leave and go where you like. we are waiting for you",
   },
 ];
+
+bool? newUser = true;
+bool? isLoggedIn = false;

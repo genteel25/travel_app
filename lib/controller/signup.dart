@@ -1,4 +1,5 @@
 import 'package:flutter/gestures.dart';
+import 'package:travel_app/controller/otp.dart';
 import 'package:travel_app/util/util.dart';
 import 'package:travel_app/widget/asset.dart';
 import 'package:travel_app/widget/textfield.dart';
@@ -13,6 +14,10 @@ class SignupScreen extends StatefulWidget {
 }
 
 class SignupController extends State<SignupScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   bool showPassword = false;
 
   changePasswordIcon() {

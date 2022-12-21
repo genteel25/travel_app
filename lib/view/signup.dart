@@ -32,7 +32,7 @@ class SignupView extends StatelessView<SignupScreen, SignupController> {
                 ),
               ),
             ),
-            SizedBox(height: 40.h),
+            SizedBox(height: 20.h),
             Container(
               width: double.infinity,
               alignment: Alignment.center,
@@ -54,29 +54,82 @@ class SignupView extends StatelessView<SignupScreen, SignupController> {
                 textStyle: AppTextStyles.medium,
               ),
             ),
-            SizedBox(height: 40.h),
-            InputField(hintText: "Quadri Opeyemi"),
-            SizedBox(height: 24.h),
-            InputField(hintText: "genteelajagbe@gmail.com"),
-            SizedBox(height: 24.h),
+            SizedBox(height: 35.h),
             InputField(
-              hintText: "************",
+              hintText: "Full name",
+              controller: controller.nameController,
+            ),
+            SizedBox(height: 16.h),
+            InputField(
+              hintText: "Email",
+              controller: controller.emailController,
+            ),
+            SizedBox(height: 16.h),
+            InputField(
+              hintText: "Mobile number",
+              controller: controller.phoneController,
+            ),
+            SizedBox(height: 16.h),
+            InputField(
+              hintText: "Password",
               type: InputType.password,
               onPressed: () => controller.changePasswordIcon(),
               show: controller.showPassword,
+              controller: controller.passwordController,
             ),
-            SizedBox(height: 16.h),
+            SizedBox(height: 12.h),
             Container(
               alignment: Alignment.centerLeft,
               width: double.infinity,
               child: TypoWidget(
                 data: "Password must be 8 character",
-                textStyle: AppTextStyles.medium,
+                textStyle: AppTextStyles.medium.copyWith(fontSize: 13.sp),
               ),
             ),
-            SizedBox(height: 40.h),
-            const Button(text: "Sign up"),
-            SizedBox(height: 40.h),
+            SizedBox(height: 30.h),
+            BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthLoading) {
+                  showDialog(
+                    barrierColor: AppColors.scaffold.withOpacity(0.3),
+                    barrierLabel: "Barrier",
+                    context: context,
+                    builder: (context) {
+                      return const Dialog();
+                    },
+                  );
+                }
+                if (state is AuthSuccess) {
+                  context.pop();
+                  // GoRouter.of(context).goNamed("otp");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OtpScreen()));
+                }
+                if (state is AuthFailure) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        state.error.toString(),
+                      ),
+                    ),
+                  );
+                }
+              },
+              child: Button(
+                text: "Sign up",
+                onPressed: () => context.read<AuthBloc>().add(
+                      SignUp(
+                        email: controller.emailController.text,
+                        password: controller.passwordController.text,
+                        phone: controller.phoneController.text,
+                        name: controller.nameController.text,
+                      ),
+                    ),
+              ),
+            ),
+            SizedBox(height: 30.h),
             Container(
               alignment: Alignment.center,
               width: double.infinity,
